@@ -1,0 +1,47 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = '禾尤山的博客'
+theme = "PaperMod"
+[params]
+    ShowShareButtons = true
+    ShowReadingTime = true
+  [params.homeInfoParams]
+    Title = "欢迎来到我的个人博客"
+    Content = '''
+    这里是我分享技术学习、生活感悟和一些思考的个人空间。
+    希望我的文字能对您有所启发或帮助。
+    '''
+    description = "记录技术、生活和思考"
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "首页"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    identifier = "post"
+    name = "随笔"
+    url = "/post/"
+    weight = 20
+  [[menu.main]]
+    identifier = "哲学笔记"
+    name = "哲学笔记"
+    url = "/philosophy/"
+    weight = 20
+  [[menu.main]]
+    identifier = "categories"
+    name = "分类"
+    url = "/categories/"
+    weight = 30
+  [[menu.footer]]
+    identifier = "about"
+    name = "关于"
+    url = "/about/"
+    weight = 10
+  [[menu.footer]]
+    identifier = "contact"
+    name = "联系方式"
+    url = "/contact/"
+    weight = 20
+
+
