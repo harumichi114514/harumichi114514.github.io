@@ -3,8 +3,6 @@ languageCode = 'en-us'
 title = '禾尤山的博客'
 theme = "PaperMod"
 [params]
-    ShowShareButtons = true
-    ShowReadingTime = true
   [params.homeInfoParams]
     Title = "欢迎来到我的个人博客"
     Content = '''
