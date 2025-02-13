@@ -2,18 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Posts on 禾尤山的博客</title>
-    <link>http://localhost:6702/post/</link>
+    <link>https://example.org/post/</link>
     <description>Recent content in Posts on 禾尤山的博客</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Feb 2025 18:55:48 +0800</lastBuildDate>
-    <atom:link href="http://localhost:6702/post/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>如何能偶</title>
-      <link>http://localhost:6702/post/2025.2.13/</link>
-      <pubDate>Thu, 13 Feb 2025 18:55:48 +0800</pubDate>
-      <guid>http://localhost:6702/post/2025.2.13/</guid>
-      <description>&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;</description>
-    </item>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="https://example.org/post/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
