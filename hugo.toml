@@ -1,8 +1,10 @@
 baseURL = 'https://example.org/'
 languageCode = 'en-us'
-title = '禾尤山的博客'
-theme = "Github Style"
+title = 'My New Hugo Site'
+theme = "PaperMod"
 [params]
+    ShowShareButtons = true
+    ShowReadingTime = true
   [params.homeInfoParams]
     Title = "欢迎来到我的个人博客"
     Content = '''
@@ -10,7 +12,6 @@ theme = "Github Style"
     希望我的文字能对您有所启发或帮助。
     '''
     description = "记录技术、生活和思考"
-  social = true
 [menu]
   [[menu.main]]
     identifier = "home"
@@ -32,15 +33,3 @@ theme = "Github Style"
     name = "分类"
     url = "/categories/"
     weight = 30
-  [[menu.footer]]
-    identifier = "about"
-    name = "关于"
-    url = "/about/"
-    weight = 10
-  [[menu.footer]]
-    identifier = "contact"
-    name = "联系方式"
-    url = "/contact/"
-    weight = 20
-
-
