@@ -11,7 +11,7 @@ theme = "PaperMod"
   enabled = true
   subtitle = "This is subtitle"
   imageHeight = 120
-  imageWidth = 120>"
+  imageWidth = 120
 
 [menu]
   [[menu.main]]
