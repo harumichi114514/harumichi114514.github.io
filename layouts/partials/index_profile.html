@@ -33,7 +33,11 @@
         <h1>{{ .title | default site.Title | markdownify }}</h1>
         <span>{{ .subtitle | markdownify }}</span>
         {{- partial "social_icons.html" -}}
-
+        {{ if .IsHome }}
+        <div class="home-content">
+            {{ .Content }}
+        </div>
+        {{ end }}
         {{- with .buttons }}
         <div class="buttons">
             {{- range . }}
