@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+
+body {
+    font-family: 'Noto Serif SC', serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Noto Serif SC', serif;
+}
+
+.custom-text {
+  font-family: 'Noto Serif SC', serif;
+}
