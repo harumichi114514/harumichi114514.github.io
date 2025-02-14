@@ -7,6 +7,8 @@ theme = "PaperMod"
     ShowReadingTime = true
     ShowToc = true
     TocOpen = false
+[params.home]
+    layout = "blank"
 [menu]
   [[menu.main]]
     identifier = "home"
