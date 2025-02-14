@@ -8,7 +8,18 @@ theme = "PaperMod"
     ShowToc = true
     TocOpen = false
 [params.home]
-    layout = "blank"
+  layout = "profile"
+  avatarURL = "/images/avatar.png"  # 替换为您的头像图片路径
+  bio = "欢迎来到我的个人网站！这里记录我的学习笔记和一些技术分享。" # 替换为您的个人简介
+  profileColors = ["#fff", "#000"] # 可选，自定义颜色
+
+  [[params.home.socialIcons]]
+    name = "github"
+    url = "https://github.com/your-github-username" # 替换为您的 GitHub 链接
+
+  [[params.home.socialIcons]]
+    name = "twitter"
+    url = "https://twitter.com/your-twitter-username" # 替换为您的 Twitter 链接
 [menu]
   [[menu.main]]
     identifier = "home"
