@@ -7,6 +7,7 @@ theme = "PaperMod"
     ShowReadingTime = true
     ShowToc = true
     TocOpen = false
+    custonCSS = "css/custom.css"
 [menu]
   [[menu.main]]
     identifier = "home"
