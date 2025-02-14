@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>My New Hugo Site</title>
-    <link>https://example.org/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <title>我的文件夹索引页 on 嵇博</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in 我的文件夹索引页 on 嵇博</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 13 Feb 2025 19:40:55 +0800</lastBuildDate>
-    <atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>康德的先验观念论</title>
-      <link>https://example.org/philosophy/%E5%BA%B7%E5%BE%B7%E7%9A%84%E6%89%B9%E5%88%A4%E5%93%B2%E5%AD%A6/</link>
+      <link>http://localhost:1313/philosophy/%E5%BA%B7%E5%BE%B7%E7%9A%84%E6%89%B9%E5%88%A4%E5%93%B2%E5%AD%A6/</link>
       <pubDate>Thu, 13 Feb 2025 19:40:55 +0800</pubDate>
-      <guid>https://example.org/philosophy/%E5%BA%B7%E5%BE%B7%E7%9A%84%E6%89%B9%E5%88%A4%E5%93%B2%E5%AD%A6/</guid>
+      <guid>http://localhost:1313/philosophy/%E5%BA%B7%E5%BE%B7%E7%9A%84%E6%89%B9%E5%88%A4%E5%93%B2%E5%AD%A6/</guid>
       <description>&lt;p&gt;在《纯粹理性批判》中，康德主张空间和时间&lt;strong&gt;只是我们&lt;/strong&gt;认知对象的形式，而&lt;strong&gt;不是物自体&lt;/strong&gt;（独立于我们）&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;。康德主张，在空间与时间中的对象被称为“现象”，并且我们对现象的物自体一无所知。&lt;/p&gt;
 &lt;h1 id=&#34;现象与物自体&#34;&gt;现象与物自体&lt;/h1&gt;
 &lt;p&gt;在第一版《纯粹理性批判》中，康德提出了关于时间和空间一系列惊人的论断：&lt;/p&gt;
@@ -60,6 +60,13 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
+    </item>
+    <item>
+      <title>如何能偶</title>
+      <link>http://localhost:1313/post/2025.2.13/</link>
+      <pubDate>Thu, 13 Feb 2025 18:55:48 +0800</pubDate>
+      <guid>http://localhost:1313/post/2025.2.13/</guid>
+      <description>&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;</description>
     </item>
   </channel>
 </rss>
