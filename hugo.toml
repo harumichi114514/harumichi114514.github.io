@@ -10,17 +10,17 @@ theme = "PaperMod"
 [menu]
   [[menu.main]]
     identifier = "home"
-    name = "首页"
+    name = "🏠 首页"
     url = "/"
     weight = 10
   [[menu.main]]
     identifier = "post"
-    name = "随笔"
+    name = "📝 随笔"
     url = "/post/"
     weight = 20
   [[menu.main]]
     identifier = "哲学笔记"
-    name = "哲学笔记"
+    name = "📓 哲学笔记"
     url = "/philosophy/"
     weight = 20
 
