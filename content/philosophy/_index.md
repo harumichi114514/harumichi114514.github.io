@@ -1,5 +1,5 @@
 ---
-title: 哲学笔记
+title: 
 description: 
 type: philosophy
 ---
