@@ -1,7 +1,7 @@
 ---
 title: 我的文件夹索引页
 description: 这是我的文件夹的索引页，列出了该文件夹下的所有内容。
-type: "home-content"
+type: "content"
 ---
 
 # 浊酒一杯，弹琴一曲，志愿毕矣。
