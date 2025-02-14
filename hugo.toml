@@ -33,6 +33,6 @@ theme = "PaperMod"
     weight = 20
   [[menu.main]]
     identifier = "About"
-    name = "关于"
+    name = "🙆 关于"
     url = "/about/"
-    weight = 20
+    weight = 40
