@@ -6,13 +6,20 @@
     <description>Recent content in 我的文件夹索引页 on 嵇博</description>
     <generator>Hugo -- 0.143.1</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Feb 2025 19:40:55 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 13 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>如何能偶</title>
+      <link>http://localhost:1313/post/2025.2.13/</link>
+      <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/2025.2.13/</guid>
+      <description>&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;</description>
+    </item>
+    <item>
       <title>康德的先验观念论</title>
-      <link>http://localhost:1313/philosophy/%E5%BA%B7%E5%BE%B7%E7%9A%84%E6%89%B9%E5%88%A4%E5%93%B2%E5%AD%A6/</link>
-      <pubDate>Thu, 13 Feb 2025 19:40:55 +0800</pubDate>
-      <guid>http://localhost:1313/philosophy/%E5%BA%B7%E5%BE%B7%E7%9A%84%E6%89%B9%E5%88%A4%E5%93%B2%E5%AD%A6/</guid>
+      <link>http://localhost:1313/philosophy/%E5%BA%B7%E5%BE%B7%E7%9A%84%E5%85%88%E9%AA%8C%E8%A7%82%E5%BF%B5%E8%AE%BA/</link>
+      <pubDate>Thu, 13 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/philosophy/%E5%BA%B7%E5%BE%B7%E7%9A%84%E5%85%88%E9%AA%8C%E8%A7%82%E5%BF%B5%E8%AE%BA/</guid>
       <description>&lt;p&gt;在《纯粹理性批判》中，康德主张空间和时间&lt;strong&gt;只是我们&lt;/strong&gt;认知对象的形式，而&lt;strong&gt;不是物自体&lt;/strong&gt;（独立于我们）&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;。康德主张，在空间与时间中的对象被称为“现象”，并且我们对现象的物自体一无所知。&lt;/p&gt;
 &lt;h1 id=&#34;现象与物自体&#34;&gt;现象与物自体&lt;/h1&gt;
 &lt;p&gt;在第一版《纯粹理性批判》中，康德提出了关于时间和空间一系列惊人的论断：&lt;/p&gt;
@@ -24,12 +31,16 @@
 &lt;h2 id=&#34;先验实在论与经验观念论&#34;&gt;先验实在论与经验观念论&lt;/h2&gt;
 &lt;p&gt;理解先验观念论的一个可能出发点是，观察康德与它进行区分的哲学观点。在第四谬论中，康德将先验实在论和先验观念论进行了区分：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;与这种[先验]观念论相对的是先验实在论，后者将空间和时间视为视为自在地（独立于我们感性）被给予的东西。因此，先验实在论者将外部显象（如果承认它们的实在性）视为自在之物[Dinge an sich selbst]，它们将独立于我们和我们的感性而存在，因此根据纯粹知性概念，它们也将存在于我们之外。
-根据文段，先验实在论主张：时间和空间内的对象独立于我们对他们的经验。先验观念论拒绝这个主张。这个主张在《批判》后续部分中得到重申，当时康德写道：
-我们在先验感性论中已充分证明，在空间或时间中被直观的一切，因而对我们而言可能的经验之所有对象，都不过是表象，亦即纯粹的表象，它们，正如它们被表象的那样，作为广延的存在或变化系列，在我们思想之外不具有基于自身的任何存在。我将此学说称为先验观念论。实在论者，在先验&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;的意义上，将我们感性的这些样式变化视为自在之物，并因此将纯粹的表象视为自在之物[Sachen an sich selbst]。” (A491/B519)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;与这种[先验]观念论相对的是先验实在论，后者将空间和时间视为视为自在地（独立于我们感性）被给予的东西。因此，先验实在论者将外部显象（如果承认它们的实在性）视为自在之物[Dinge an sich selbst]，它们将独立于我们和我们的感性而存在，因此根据纯粹知性概念，它们也将存在于我们之外。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;根据文段，先验实在论主张：时间和空间内的对象独立于我们对他们的经验。先验观念论拒绝这个主张。这个主张在《批判》后续部分中得到重申，当时康德写道：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我们在先验感性论中已充分证明，在空间或时间中被直观的一切，因而对我们而言可能的经验之所有对象，都不过是表象，亦即纯粹的表象，它们，正如它们被表象的那样，作为广延的存在或变化系列，在我们思想之外不具有基于自身的任何存在。我将此学说称为先验观念论。实在论者，在先验&lt;sup id=&#34;fnref:3&#34;&gt;&lt;a href=&#34;#fn:3&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;的意义上，将我们感性的这些样式变化视为自在之物，并因此将纯粹的表象视为自在之物[Sachen an sich selbst]。” (A491/B519)&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;表象的存在至少部分地取决于我们对它们的经验，而自在之物的存在则完全不基于我们的经验（参见A369, A492/B521, A493/B522）。康德称先验实在论为“常见的偏见”（A740/B768），并将其描述为“常见但错误的预设”（A536/B564；参见Allison 2004: 22）。先验实在论是常识性的、前理论的观点，它认为在空间和时间中的对象是“自在之物”，康德当然否认这一点。&lt;/p&gt;
+&lt;p&gt;康德也将先验观念论与另一个立场进行区分，他称之为“经验观念论”：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;如果有人试图将长期以来受到谴责的经验观念论归于我们，那将是对我们的不公正。经验观念论在假定空间具有恰当实在性的同时，否认广延存在于其中的存在，或者至少认为这种存在是可疑的，因此在这方面不承认梦境和真实之间有令人满意地可证明的区别。至于在时间中的内感官的表象，经验唯心主义认为它们作为真实之物没有困难，实际上，它甚至断言，这种内在经验并且唯有这种经验才足以证明其对象（自在地）的真实存在，以及所有这些时间规定。”(A491/B519)&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;正如康德在此处所描述的那样，经验观念论是一种观点，它认为我们&lt;strong&gt;直接（非推论地）所知道的&lt;/strong&gt;只是我们自己的心灵以及我们按时间顺序排列的精神状态的存在，而我们只能&lt;strong&gt;推论&lt;/strong&gt;出“在我们之外”的空间中的对象的存在。由于从已知结果到未知原因的推论总是不确定的，因此经验观念论者得出结论，我们无法知道物体是否存在于我们之外的空间中。康德通常区分了两种经验观念论：独断的观念论，它声称空间中的物体不存在；以及怀疑的观念论，它声称空间中的物体可能存在，但我们无法知道它们是否存在（参见A377）。虽然在A版中从未提及他们的名字，但贝克莱似乎是康德的典型独断的观念论者&lt;sup id=&#34;fnref:4&#34;&gt;&lt;a href=&#34;#fn:4&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;，而笛卡尔则被认为是典型的怀疑的观念论者&lt;sup id=&#34;fnref:5&#34;&gt;&lt;a href=&#34;#fn:5&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;p&gt;先验观念论是一种经验实在论的形式，因为它意味着我们仅通过自我意识就能直接（非推论地）和确定地知道&lt;strong&gt;空间中&lt;/strong&gt;物体的存在：&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;[…] 外部对象（物体）仅仅是表象，因此也只不过是我的一种表象，它们的客体只有通过这些表象才成为某种东西，但与它们分离就什么都不是。因此，外部事物和我自身一样存在，并且事实上两者都存在于我的自我意识的直接证词之上，只有以下区别：作为思维主体的我的自我的表象仅仅与内感官相关，但指明广延存在的表象也与外感官相关。我对于外部对象的实在性，并不比对于我的内感官（我的思想）的实在性更需要进行推论，因为在这两种情况下，它们都不过是表象，对它们的直接感知（意识）同时就是它们实在性的充分证明。(A370–1)&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;仅仅通过自我意识的内省，我就能知道我拥有具有特定内容的表象，并且由于表象“只不过是我的一种表象”，这就构成了对空间中物体存在的直接而确定的知识。
@@ -47,26 +58,16 @@
 &lt;p&gt;“直观‘和”认知“可以近似类比于马克思主义哲学中的“感性认识”和“理性认识”。&amp;#160;&lt;a href=&#34;#fnref:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&amp;#160;&lt;a href=&#34;#fnref1:2&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id=&#34;fn:3&#34;&gt;
-&lt;p&gt;康德的“先验”有一层含义是，认识的先天条件（不依赖于经验的条件）。
-表象的存在至少部分地取决于我们对它们的经验，而自在之物的存在则完全不基于我们的经验（参见A369, A492/B521, A493/B522）。康德称先验实在论为“常见的偏见”（A740/B768），并将其描述为“常见但错误的预设”（A536/B564；参见Allison 2004: 22）。先验实在论是常识性的、前理论的观点，它认为在空间和时间中的对象是“自在之物”，康德当然否认这一点。
-康德也将先验观念论与另一个立场进行区分，他称之为“经验观念论”：&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;康德的“先验”有一层含义是，认识的先天条件（不依赖于经验的条件）。&amp;#160;&lt;a href=&#34;#fnref:3&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id=&#34;fn:4&#34;&gt;
 &lt;p&gt;贝克莱的经典论断是，我们只能感知到观念，而无法认识独立于感知的“物质”，因此事物的存在依赖于被感知。&amp;#160;&lt;a href=&#34;#fnref:4&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id=&#34;fn:5&#34;&gt;
-&lt;p&gt;笛卡尔的著名论断是，通过内省，我们只能确定“我思”是确定存在的。
-先验观念论是一种经验实在论的形式，因为它意味着我们仅通过自我意识就能直接（非推论地）和确定地知道&lt;strong&gt;空间中&lt;/strong&gt;物体的存在：&amp;#160;&lt;a href=&#34;#fnref:5&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;笛卡尔的著名论断是，通过内省，我们只能确定“我思”是确定存在的。&amp;#160;&lt;a href=&#34;#fnref:5&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;</description>
-    </item>
-    <item>
-      <title>如何能偶</title>
-      <link>http://localhost:1313/post/2025.2.13/</link>
-      <pubDate>Thu, 13 Feb 2025 18:55:48 +0800</pubDate>
-      <guid>http://localhost:1313/post/2025.2.13/</guid>
-      <description>&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;</description>
     </item>
   </channel>
 </rss>
