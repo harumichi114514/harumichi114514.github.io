@@ -7,11 +7,6 @@ theme = "PaperMod"
     ShowReadingTime = true
     ShowToc = true
     TocOpen = false
-[params.profileMode]
-  enabled = true
-  subtitle = "This is subtitle"
-  imageHeight = 120
-  imageWidth = 120
 
 [menu]
   [[menu.main]]
