@@ -7,6 +7,13 @@ theme = "PaperMod"
     ShowReadingTime = true
     ShowToc = true
     TocOpen = false
+[params.profileMode]
+    enabled = false
+    title = "Your Name"
+    subtitle = "Your Profession or Short Bio"
+    imageUrl = "/images/avatar.png" # 确保头像文件在 assets/images/ 目录下
+    imageWidth = 120
+    imageHeight = 120
 
 [menu]
   [[menu.main]]
