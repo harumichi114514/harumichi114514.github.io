@@ -1,13 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
-
-body {
-  font-family: 'Noto Serif SC', serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Noto Sans SC', serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+ /*设置活动菜单项的字体粗细 */
+#menu li a span.active {
+  font-weight: 1000;
+}
+ /*设置不活动菜单项的字体粗细 */
+#menu li a span {
+  font-weight: 400;
+}
+
+.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
+  font-family: 'Noto Sans SC', serif;
+}
+
+body {
   font-family: 'Noto Serif SC', serif;
 }
 
 .custom-text {
   font-family: 'Noto Serif SC', serif;
 }
+
