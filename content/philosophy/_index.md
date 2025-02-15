@@ -2,6 +2,8 @@
 title: 
 description: 
 type: philosophy
+cover: "img/cover/philosophy.jpg"
+layout: section
 ---
 
 ## 𝑪𝒂𝒓𝒑𝒆 𝒅𝒊𝒆𝒎
