@@ -4,12 +4,11 @@ title = '嵇博'
 theme = "PaperMod"
 [params]
     ShowShareButtons = true
-    ShowReadingTime = true
     ShowToc = true
     TocOpen = false
 [params.profileMode]
     enabled = false
-    title = "Your Name"
+    title = "禾尤山"
     subtitle = "Your Profession or Short Bio"
     imageUrl = "/images/avatar.png" # 确保头像文件在 assets/images/ 目录下
     imageWidth = 120
