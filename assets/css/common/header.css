@@ -57,6 +57,9 @@ body:not(.dark) #sun {
     white-space: nowrap;
 }
 
+#menu li + li {
+    margin-inline-start: var(--gap);
+}
 
 #menu a {
     font-size: 16px;
