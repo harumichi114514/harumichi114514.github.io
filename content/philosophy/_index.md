@@ -2,7 +2,8 @@
 title: 
 description: 
 type: philosophy
-cover: "img/cover/philosophy.jpg"
+cover: 
+    image: "img/cover/philosophy.jpg"
 layout: section
 ---
 
