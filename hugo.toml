@@ -22,10 +22,15 @@ theme = "PaperMod"
     url = "/"
     weight = 10
   [[menu.main]]
-    identifier = "哲学笔记"
-    name = "📓 哲学笔记"
+    identifier = "西方哲学笔记"
+    name = "📓 西哲"
     url = "/philosophy/"
     weight = 20
+  [[menu.main]]
+    identifier = "中国哲学笔记"
+    name = "📓 中哲"
+    url = "/zhexue/"
+    weight = 30
   [[menu.main]]
     identifier = "About"
     name = "🙆 关于"
