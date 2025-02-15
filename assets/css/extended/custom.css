@@ -44,6 +44,14 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: -30px;
 }
 
+.cover {
+  width: 100%; /* 图片宽度占满父容器 */
+  height: auto; /* 高度自动，保持图片比例 */
+  display: block; /* 移除图片底部默认的间隙 */
+  object-fit: cover; /* 图片填充容器，可能会裁剪 */
+  object-position: center; /* 图片居中显示 */
+}
+
 .horizontal-menu ul {
   list-style: none; /* 移除列表樣式 */
   padding: 0;
