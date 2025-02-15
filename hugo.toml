@@ -6,6 +6,7 @@ theme = "PaperMod"
     ShowShareButtons = true
     ShowToc = true
     TocOpen = false
+    slogan = "欢迎来到禾尤山的个人博客！"
 [params.profileMode]
     enabled = false
     title = "禾尤山"
