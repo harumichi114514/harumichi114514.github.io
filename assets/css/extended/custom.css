@@ -9,7 +9,7 @@
 }
  /*设置Profile标题字体粗细 */
  .profile h1 {
-  font-family: 'Maple Mono CN Light', serif;
+  /*font-family: 'wenfeng-kslyt', serif;*/
   font-weight: 1000;
  }
 
