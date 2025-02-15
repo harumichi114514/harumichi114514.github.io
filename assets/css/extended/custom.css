@@ -87,8 +87,8 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%; /* 使元素寬度填滿整個視窗 */
   background-color: var(--header-background-light); /* 預設為淺色主題 */
   color: var(--header-text-light); /* 預設為淺色主題 */  
-  opacity: 0.9; /* 設定透明度，0 到 1 之間的值，0 表示完全透明，1 表示完全不透明 */  
-  backdrop-filter: blur(100px); /* 應用高斯模糊效果，10px 是模糊半徑 */
+  opacity: 1; /* 設定透明度，0 到 1 之間的值，0 表示完全透明，1 表示完全不透明 */  
+  backdrop-filter: blur(20px); /* 應用高斯模糊效果，10px 是模糊半徑 */
   z-index: 100; /* 設定堆疊順序，確保標頭在其他內容之上 */
   /* 其他樣式，例如高度、內邊距、邊框等 */
 }
