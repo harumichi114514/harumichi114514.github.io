@@ -99,6 +99,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* 如果您的標頭內容與頁面內容重疊，可以新增以下樣式 */
+
 body {
-  padding-top: 60px; /* 將頁面內容向下推，避免與標頭重疊（根據標頭高度調整） */
+  padding-top: 60px; /* 預設的 padding-top */
+}
+
+@media (max-width: 768px) {
+
+  body {
+    padding-top: 100px;
+  }
 }
