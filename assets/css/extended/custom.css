@@ -43,3 +43,62 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 25px;
   margin-top: -30px;
 }
+
+.horizontal-menu ul {
+  list-style: none; /* 移除列表樣式 */
+  padding: 0;
+  margin: 0;
+  display: flex; /* 使用 Flexbox 進行水平佈局 */
+}
+
+.horizontal-menu li {
+  position: relative; /* 為了子選單的定位 */
+}
+
+.horizontal-menu li a {
+  display: block; /* 使連結填滿整個 li 元素 */
+  padding: 10px 15px; /* 添加一些內邊距 */
+  text-decoration: none; /* 移除連結底線 */
+}
+
+/* 子選單樣式 */
+.horizontal-menu li ul {
+  display: none; /* 預設隱藏子選單 */
+  position: absolute; /* 絕對定位 */
+  top: 100%; /* 位於父元素底部 */
+  left: 0;
+  background-color: #f9f9f9; /* 子選單背景顏色 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 添加陰影 */
+  z-index: 1; /* 確保子選單在上方 */
+}
+
+.horizontal-menu li:hover > ul {
+  display: block; /* 滑鼠懸停時顯示子選單 */
+}
+
+.horizontal-menu li ul li {
+  width: 150px; /* 子選單項目寬度 */
+}
+
+.header {
+  position: fixed; /* 將元素固定在視窗中的特定位置 */
+  top: 0; /* 將元素放置在視窗頂部 */
+  left: 0; /* 將元素放置在視窗左側 */
+  width: 100%; /* 使元素寬度填滿整個視窗 */
+  background-color: var(--header-background-light); /* 預設為淺色主題 */
+  color: var(--header-text-light); /* 預設為淺色主題 */  
+  opacity: 0.9; /* 設定透明度，0 到 1 之間的值，0 表示完全透明，1 表示完全不透明 */  
+  backdrop-filter: blur(100px); /* 應用高斯模糊效果，10px 是模糊半徑 */
+  z-index: 100; /* 設定堆疊順序，確保標頭在其他內容之上 */
+  /* 其他樣式，例如高度、內邊距、邊框等 */
+}
+
+/* 如果您的標頭有陰影，可以新增以下樣式 */
+.header {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 如果您的標頭內容與頁面內容重疊，可以新增以下樣式 */
+body {
+  padding-top: 60px; /* 將頁面內容向下推，避免與標頭重疊（根據標頭高度調整） */
+}
