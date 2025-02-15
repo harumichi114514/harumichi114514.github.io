@@ -31,13 +31,14 @@
 {{- end }}
 
 {{- if .Params.cover }}
-<div class="section-cover">
+<div class="cover">
     <link rel="image_src" href="{{ .Params.cover.image | absURL }}">
     <div class="section-cover-content">
         <h1>{{ .Title }}</h1>
         {{ with .Params.description }}
         <p class="section-description">{{ . }}</p>
         {{ end }}
+        <img src="http://localhost:1313/img/cover/philosophy.jpg" alt="封面图片" class="section-cover-image">
     </div>
 </div>
 {{- end }}
