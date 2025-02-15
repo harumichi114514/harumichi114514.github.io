@@ -33,7 +33,7 @@
 {{- if .Params.cover }}
 <div class="cover">
     <link rel="image_src" href="{{ .Params.cover.image | absURL }}">
-    <div class="section-cover-content">
+    <div class="cover">
         <h1>{{ .Title }}</h1>
         {{ with .Params.description }}
         <p class="section-description">{{ . }}</p>
