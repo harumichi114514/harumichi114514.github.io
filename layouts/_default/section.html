@@ -31,12 +31,15 @@
 {{- end }}
 
 {{- if .Params.cover }}
-<div class="section-cover">      <link rel="image_src" href="{{ .Params.cover.image | absURL }}">
-        <div class="section-cover-content">         <h1>{{ .Title }}</h1>
-            {{ with .Params.description }}
-            <p class="section-description">{{ . }}</p>
-            {{ end }}
-            <img src="{{ .Params.cover.image | absURL }}" alt="封面图片" class="section-cover-image">     </div>
+<div class="section-cover">  
+    <link rel="image_src" href="{{ .Params.cover.image | absURL }}">
+    <div class="section-cover-content"> 
+         <h1>{{ .Title }}</h1>
+     {{ with .Params.description }}
+     <p class="section-description">{{ . }}</p>
+     {{ end }}
+     <img src="{{ .Params.cover.image | absURL }}" alt="封面图片" class="section-cover-image"> 
+ </div>
     </div>
 </div>
 {{- end }}
