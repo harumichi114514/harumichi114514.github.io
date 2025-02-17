@@ -214,6 +214,9 @@ body {
 
 }
 
+.dark {
+  --theme:rgb(55, 56, 62)
+}
 body.dark .post-content {
   color: #ffffff;
       /*  添加毛玻璃效果  */
