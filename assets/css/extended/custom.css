@@ -119,76 +119,88 @@ body {
   }
 }
 
-
-#footer {
-  position: relative; /* 定位子元素的必要条件 */
-  overflow: hidden;     /* 裁剪页脚外部的内容 */
-  width: 100%;
-  /* 根据需要调整高度 */
-  height: 200px; /* 示例高度 */
-  color: #666;
-  font-size: 0.9em;
-  text-align: center;
+#bottom-animation-container {
+  position: fixed; /* 固定定位，相对于视口 */
+  bottom: -2rem;      /*  固定在视口底部 */
+  left: 0;
+  width: 100%;     /* 宽度 100% */
+  height: 18rem;    /* 动画总高度 (根据需要调整) */
+  overflow: hidden; /* 裁剪超出内容 */
+  z-index: -1;      /*  置于内容下方，避免遮挡内容 (可以根据需要调整 z-index) */
+  pointer-events: none; /*  穿透点击事件，避免遮挡下方内容 */
 }
 
-#footerStyle2 {
-  position: absolute; /* 定位页脚背景 */
+/*  以下是动画背景图层的样式，与之前 footer-background 的样式基本相同，但选择器需要更新为 #bottom-animation-container footer-background */
+#bottom-animation-container footer-background {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden; /* 裁剪溢出的背景层 */
+  overflow: hidden;
+  transform: translate3d(0,0,0);
 }
 
-footer-background {
-  position: relative; /*  figures 的定位上下文 */
-  height: 100%;
-  width: 100%;
-}
-
-
-footer-background figure {
-  position: absolute; /*  将 figures 堆叠在彼此之上 */
+#bottom-animation-container footer-background figure { /* figure 元素的样式保持不变，选择器更新 */
+  bottom: 0;
   left: 0;
+  height: 15rem;
+  margin: 0;
+  position: absolute;
   width: 100%;
-  height: 100%;
-  background-repeat: repeat-x; /*  确保水平重复 */
-  background-position: bottom center; /* 将图像对齐到底部 */
+  opacity: 1;
 }
 
-
-footer-background figure.clouds {
-  background-image: url("https://cdn.cnblogs.com/gh/BNDong/Cnblogs-Theme-SimpleMemory@v2.0.7/dist/images/0ff63a3006d8a2821be2.webp");
-  z-index: 3; /* 云层在最顶层 */
-  animation: clouds-move 30s linear infinite; /* 调整动画速度 */
+#bottom-animation-container footer-background .background, /* 图层样式保持不变，选择器更新 */
+#bottom-animation-container footer-background .clouds,
+#bottom-animation-container footer-background .foreground {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  background-repeat: repeat-x !important;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
 }
 
-footer-background figure.background {
-  background-image: url("https://cdn.cnblogs.com/gh/BNDong/Cnblogs-Theme-SimpleMemory@v2.0.7/dist/images/af2701cbb4196bedb254.webp");
-  z-index: 2; /* 背景在云层后面 */
-  animation: background-move 40s linear infinite; /* 调整动画速度 */
+#bottom-animation-container footer-background .foreground { /* 前景图层样式保持不变，选择器更新 */
+  background-image: url("/images/30b4f3f93333bef2cf56.webp");
+  background-size: 225em 15rem !important;
+  top: 1rem !important;
+  animation-duration: 200s;
+  animation-name: foreground;
 }
 
-footer-background figure.foreground {
-  background-image: url("https://cdn.cnblogs.com/gh/BNDong/Cnblogs-Theme-SimpleMemory@v2.0.7/dist/images/30b4f3f93333bef2cf56.webp");
-  z-index: 1; /* 前景在最底层 */
-  animation: foreground-move 60s linear infinite; /* 调整动画速度 */
+#bottom-animation-container footer-background .background { /* 背景图层样式保持不变，选择器更新 */
+  background-image: url("/images/af2701cbb4196bedb254.webp");
+  background-size: 225em 21.313rem !important;
+  top: -1em !important;
+  animation-duration: 300s;
+  animation-name: background;
+  opacity: 0.8;
 }
 
-
-/* 视差效果的关键帧动画 */
-
-@keyframes clouds-move {
-  0% { background-position-x: 0; }
-  100% { background-position-x: -1000px; } /* 调整云层移动距离 */
+#bottom-animation-container footer-background .clouds { /* 云层图层样式保持不变，选择器更新 */
+  background-image: url("/images/0ff63a3006d8a2821be2.webp");
+  background-size: 225em 15rem !important;
+  top: -2em !important;
+  animation-duration: 400s;
+  animation-name: clouds;
+  opacity: 0.6;
 }
 
-@keyframes background-move {
-  0% { background-position-x: 0; }
-  100% { background-position-x: -800px; } /* 调整背景移动距离 */
+@keyframes foreground { /* 动画关键帧保持不变 */
+  0% { background-position: 225em 0 }
+  100% { background-position: 0 0 }
 }
 
-@keyframes foreground-move {
-  0% { background-position-x: 0; }
-  100% { background-position-x: -600px; } /* 调整前景移动距离 */
+@keyframes background {
+  0% { background-position: 225em 0 }
+  100% { background-position: 0 0 }
+}
+
+@keyframes clouds {
+  0% { background-position: 225em 0 }
+  100% { background-position: 0 0 }
 }

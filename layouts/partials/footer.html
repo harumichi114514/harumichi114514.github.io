@@ -1,13 +1,5 @@
 {{- if not (.Param "hideFooter") }}
 <footer class="footer">
-    <div class="footer-image" id="footerStyle1" style="display:none"></div>
-    <footer id="footerStyle2" style="">
-        <footer-background>
-            <figure class="clouds"></figure>
-            <figure class="background"></figure>
-            <figure class="foreground"></figure>
-        </footer-background>
-    </footer>
     {{- if not site.Params.footer.hideCopyright }}
         {{- if site.Copyright }}
         <span>{{ site.Copyright | markdownify }}</span>
@@ -26,15 +18,7 @@
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
         <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    <footer id="footerStyle2" style="">
-            <footer-background>
-                <figure class="clouds"></figure>
-                <figure class="background"></figure>
-                <figure class="foreground"></figure>
-        </footer-background>
     </span>
-
-
 </footer>
 
 
