@@ -10,7 +10,7 @@
 <meta name="description" content="这是我的文件夹的索引页，列出了该文件夹下的所有内容。">
 <meta name="author" content="">
 <link rel="canonical" href="http://localhost:1313/about/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.d757d21caf00c15f1e6bcba829d5c912efcc4a4e11ea392d1aa3345257e682d9.css" integrity="sha256-11fSHK8AwV8ea8uoKdXJEu/MSk4R6jktGqM0Ulfmgtk=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.64e4cb378fb0c3e355563cc48d8e44cbf38f54a3a3b09444fd9fb20fed88d400.css" integrity="sha256-ZOTLN4&#43;ww&#43;NVVjzEjY5Ey/OPVKOjsJRE/Z&#43;yD&#43;2I1AA=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
@@ -73,6 +73,47 @@
      
     
     <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Light/result.css' />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          function updatePostContentStyle() {
+            const postContentElement = document.querySelector('.post-content'); 
+        
+            if (postContentElement) {
+              if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+                postContentElement.style.backgroundColor = 'rgba(34, 34, 34, 0.6)'; 
+                postContentElement.style.color = '#dddddd';           
+                postContentElement.style.backdropFilter = 'blur(10px)';          
+                postContentElement.style.webkitBackdropFilter = 'blur(10px)'; 
+                postContentElement.style.padding = '20px';                       
+                postContentElement.style.margin = '15px';                        
+        
+                
+                
+                
+              } else {
+                
+                postContentElement.style.backgroundColor = ''; 
+                postContentElement.style.color = '';           
+                postContentElement.style.backdropFilter = '';          
+                postContentElement.style.webkitBackdropFilter = ''; 
+                postContentElement.style.padding = '';                       
+                postContentElement.style.margin = '';                        
+        
+                
+              }
+            }
+          }
+        
+          
+          updatePostContentStyle();
+        
+          
+          if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updatePostContentStyle);
+          }
+        });
+        </script>
 </head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -156,12 +197,6 @@
     </main>
     
 <footer class="footer">
-    <div class="footer-image" id="footerStyle1" style="display:none"></div>
-    <footer-background id="footerStyle2">  
-        <figure class="clouds"></figure>
-        <figure class="background"></figure>
-        <figure class="foreground"></figure>
-      </footer-background>
         <span>&copy; 2025 <a href="http://localhost:1313/">嵇博</a></span> · 
 
     
@@ -230,6 +265,13 @@
     })
 
 </script>
+<div id="bottom-animation-container">
+    <footer-background id="footerStyle2">
+        <figure class="clouds"></figure>
+        <figure class="background"></figure>
+        <figure class="foreground"></figure>
+    </footer-background>
+</div> 
 </body>
 
 </html>

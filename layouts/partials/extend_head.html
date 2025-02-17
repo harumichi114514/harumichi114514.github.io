@@ -20,4 +20,45 @@
     <!-- 此中文网页字体由文风字体（Windfonts）免费提供，您可以自由引用，请务必保留此授权许可标注 https://wenfeng.org/license --> 
     {{/* Maple Mono CN Light */}}
     <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Light/result.css' />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          function updatePostContentStyle() {
+            const postContentElement = document.querySelector('.post-content'); //  确保选择器 '.post-content' 正确匹配您的元素
+        
+            if (postContentElement) {
+              if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                //  黑暗模式：应用毛玻璃效果和间距样式
+                postContentElement.style.backgroundColor = 'rgba(34, 34, 34, 0.6)'; //  对应 CSS 变量 --post-content-background-dark 的颜色值，可以调整透明度
+                postContentElement.style.color = '#dddddd';           //  对应 CSS 变量 --post-content-text-dark 的颜色值
+                postContentElement.style.backdropFilter = 'blur(10px)';          //  毛玻璃模糊效果，可以调整数值
+                postContentElement.style.webkitBackdropFilter = 'blur(10px)'; //  兼容旧版 Safari
+                postContentElement.style.padding = '20px';                       //  文字与边框间距，可以调整数值
+                postContentElement.style.margin = '15px';                        //  边框与周围元素间距，可以调整数值
+        
+                //  您可以根据需要添加更多黑暗模式下的样式，例如：
+                // postContentElement.style.fontFamily = '"另一种字体", sans-serif';
+                // postContentElement.style.lineHeight = '1.8';
+              } else {
+                //  明亮模式或其他模式：移除黑暗模式样式，恢复默认样式
+                postContentElement.style.backgroundColor = ''; //  移除背景颜色，恢复默认或 CSS 样式表中的设置 (对应 --post-content-background-light)
+                postContentElement.style.color = '';           //  移除文字颜色，恢复默认或 CSS 样式表中的设置 (对应 --post-content-text-light)
+                postContentElement.style.backdropFilter = '';          //  移除毛玻璃模糊效果
+                postContentElement.style.webkitBackdropFilter = ''; //  移除旧版 Safari 兼容的毛玻璃效果
+                postContentElement.style.padding = '';                       //  移除内边距，恢复默认或 CSS 样式表中的设置
+                postContentElement.style.margin = '';                        //  移除外边距，恢复默认或 CSS 样式表中的设置
+        
+                //  您可以根据需要恢复更多明亮模式下的 CSS 样式
+              }
+            }
+          }
+        
+          //  页面加载时执行一次，设置初始样式
+          updatePostContentStyle();
+        
+          //  监听系统主题模式变化事件 (可选，如果需要动态响应主题模式切换)
+          if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updatePostContentStyle);
+          }
+        });
+        </script>
 </head>

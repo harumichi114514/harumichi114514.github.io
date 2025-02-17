@@ -1,0 +1,87 @@
+#bottom-animation-container {
+  
+    position: fixed; /* 固定定位，相对于视口 */
+    bottom: -2rem;      /*  固定在视口底部 */
+    left: 0;
+    width: 100%;     /* 宽度 100% */
+    height: 18rem;    /* 动画总高度 (根据需要调整) */
+    overflow: hidden; /* 裁剪超出内容 */
+    z-index: -1;      /*  置于内容下方，避免遮挡内容 (可以根据需要调整 z-index) */
+    pointer-events: none; /*  穿透点击事件，避免遮挡下方内容 */
+  }
+  
+  /*  以下是动画背景图层的样式，与之前 footer-background 的样式基本相同，但选择器需要更新为 #bottom-animation-container footer-background */
+  #bottom-animation-container footer-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: translate3d(0,0,0);
+  }
+  
+  #bottom-animation-container footer-background figure { /* figure 元素的样式保持不变，选择器更新 */
+    bottom: 0;
+    left: 0;
+    height: 15rem;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+    opacity: 1;
+  }
+  
+  #bottom-animation-container footer-background .background, /* 图层样式保持不变，选择器更新 */
+  #bottom-animation-container footer-background .clouds,
+  #bottom-animation-container footer-background .foreground {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background-repeat: repeat-x !important;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+  }
+  
+  #bottom-animation-container footer-background .foreground { /* 前景图层样式保持不变，选择器更新 */
+    background-image: url("/images/30b4f3f93333bef2cf56.webp");
+    background-size: 225em 15rem !important;
+    top: 1rem !important;
+    animation-duration: 200s;
+    animation-name: foreground;
+  }
+  
+  #bottom-animation-container footer-background .background { /* 背景图层样式保持不变，选择器更新 */
+    background-image: url("/images/af2701cbb4196bedb254.webp");
+    background-size: 225em 21.313rem !important;
+    top: -1em !important;
+    animation-duration: 300s;
+    animation-name: background;
+    opacity: 0.8;
+  }
+  
+  #bottom-animation-container footer-background .clouds { /* 云层图层样式保持不变，选择器更新 */
+    background-image: url("/images/0ff63a3006d8a2821be2.webp");
+    background-size: 225em 15rem !important;
+    top: -2em !important;
+    animation-duration: 400s;
+    animation-name: clouds;
+    opacity: 0.6;
+  }
+  
+  @keyframes foreground { /* 动画关键帧保持不变 */
+    0% { background-position: 225em 0 }
+    100% { background-position: 0 0 }
+  }
+  
+  @keyframes background {
+    0% { background-position: 225em 0 }
+    100% { background-position: 0 0 }
+  }
+  
+  @keyframes clouds {
+    0% { background-position: 225em 0 }
+    100% { background-position: 0 0 }
+  }
+

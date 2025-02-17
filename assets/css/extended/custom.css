@@ -119,6 +119,7 @@ body {
   }
 }
 
+
 #bottom-animation-container {
   position: fixed; /* 固定定位，相对于视口 */
   bottom: -2rem;      /*  固定在视口底部 */
@@ -203,4 +204,26 @@ body {
 @keyframes clouds {
   0% { background-position: 225em 0 }
   100% { background-position: 0 0 }
+}
+
+.post-content {
+  padding: 25px; 
+  border-radius: 15px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+}
+
+body.dark .post-content {
+  color: #ffffff;
+      /*  添加毛玻璃效果  */
+  background-color: rgba(0, 0, 0, 0.5); /*  添加背景颜色，调整数值 (例如 0.5, 0.8, 1) 来改变透明度 */
+  backdrop-filter: blur(20px);          /*  应用毛玻璃模糊效果，调整数值 (例如 5px, 8px, 12px) 来改变模糊程度 */
+  -webkit-backdrop-filter: blur(10px); /*  兼容旧版 Safari */
+      /*  添加文字与边框的间距 (内边距 padding) */
+}
+
+.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
+  font-family: 'Noto Serif SC', serif;
+
 }
