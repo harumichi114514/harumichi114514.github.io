@@ -77,47 +77,7 @@
      
     
     <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/maple-mono-cn/dist/MapleMono-CN-Light/result.css' />
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          function updatePostContentStyle() {
-            const postContentElement = document.querySelector('.post-content'); 
-        
-            if (postContentElement) {
-              if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                
-                postContentElement.style.backgroundColor = 'rgba(34, 34, 34, 0.6)'; 
-                postContentElement.style.color = '#dddddd';           
-                postContentElement.style.backdropFilter = 'blur(10px)';          
-                postContentElement.style.webkitBackdropFilter = 'blur(10px)'; 
-                postContentElement.style.padding = '20px';                       
-                postContentElement.style.margin = '15px';                        
-        
-                
-                
-                
-              } else {
-                
-                postContentElement.style.backgroundColor = ''; 
-                postContentElement.style.color = '';           
-                postContentElement.style.backdropFilter = '';          
-                postContentElement.style.webkitBackdropFilter = ''; 
-                postContentElement.style.padding = '';                       
-                postContentElement.style.margin = '';                        
-        
-                
-              }
-            }
-          }
-        
-          
-          updatePostContentStyle();
-        
-          
-          if (window.matchMedia) {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updatePostContentStyle);
-          }
-        });
-        </script>
+
 </head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
