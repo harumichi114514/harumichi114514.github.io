@@ -118,3 +118,77 @@ body {
     padding-top: 100px;
   }
 }
+
+
+#footer {
+  position: relative; /* 定位子元素的必要条件 */
+  overflow: hidden;     /* 裁剪页脚外部的内容 */
+  width: 100%;
+  /* 根据需要调整高度 */
+  height: 200px; /* 示例高度 */
+  color: #666;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+#footerStyle2 {
+  position: absolute; /* 定位页脚背景 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* 裁剪溢出的背景层 */
+}
+
+footer-background {
+  position: relative; /*  figures 的定位上下文 */
+  height: 100%;
+  width: 100%;
+}
+
+
+footer-background figure {
+  position: absolute; /*  将 figures 堆叠在彼此之上 */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat-x; /*  确保水平重复 */
+  background-position: bottom center; /* 将图像对齐到底部 */
+}
+
+
+footer-background figure.clouds {
+  background-image: url("https://cdn.cnblogs.com/gh/BNDong/Cnblogs-Theme-SimpleMemory@v2.0.7/dist/images/0ff63a3006d8a2821be2.webp");
+  z-index: 3; /* 云层在最顶层 */
+  animation: clouds-move 30s linear infinite; /* 调整动画速度 */
+}
+
+footer-background figure.background {
+  background-image: url("https://cdn.cnblogs.com/gh/BNDong/Cnblogs-Theme-SimpleMemory@v2.0.7/dist/images/af2701cbb4196bedb254.webp");
+  z-index: 2; /* 背景在云层后面 */
+  animation: background-move 40s linear infinite; /* 调整动画速度 */
+}
+
+footer-background figure.foreground {
+  background-image: url("https://cdn.cnblogs.com/gh/BNDong/Cnblogs-Theme-SimpleMemory@v2.0.7/dist/images/30b4f3f93333bef2cf56.webp");
+  z-index: 1; /* 前景在最底层 */
+  animation: foreground-move 60s linear infinite; /* 调整动画速度 */
+}
+
+
+/* 视差效果的关键帧动画 */
+
+@keyframes clouds-move {
+  0% { background-position-x: 0; }
+  100% { background-position-x: -1000px; } /* 调整云层移动距离 */
+}
+
+@keyframes background-move {
+  0% { background-position-x: 0; }
+  100% { background-position-x: -800px; } /* 调整背景移动距离 */
+}
+
+@keyframes foreground-move {
+  0% { background-position-x: 0; }
+  100% { background-position-x: -600px; } /* 调整前景移动距离 */
+}
