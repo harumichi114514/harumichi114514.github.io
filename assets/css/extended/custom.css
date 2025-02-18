@@ -211,22 +211,54 @@ body {
   border-radius: 15px;
   margin-top: 50px;
   margin-bottom: 50px;
+  border-radius: var(--radius);
 
+
+}
+
+:root {
+  --gap: 24px;
+  --content-gap: 20px;
+  --nav-width: 1024px;
+  --main-width: 720px;
+  --header-height: 60px;
+  --footer-height: 60px;
+  --radius: 8px;
+  --theme: rgb(255, 255, 255);
+  --entry: rgb(255, 255, 255);
+  --primary: rgb(30, 30, 30);
+  --secondary: rgb(108, 108, 108);
+  --tertiary: rgb(214, 214, 214);
+  --content: rgb(31, 31, 31);
+  --code-block-bg: rgb(28, 29, 33);
+  --code-bg: rgb(245, 245, 245);
+  --border: rgb(238, 238, 238);
 }
 
 .dark {
   --theme:rgb(55, 56, 62)
 }
+
+.post-content {
+backdrop-filter: blur(10px);          /*  应用毛玻璃模糊效果，调整数值 (例如 5px, 8px, 12px) 来改变模糊程度 */
+opacity: 1;
+-webkit-backdrop-filter: blur(20px); /*  兼容旧版 Safari */
+}
+
 body.dark .post-content {
   color: #ffffff;
-      /*  添加毛玻璃效果  */
-  background-color: rgba(0, 0, 0, 0.5); /*  添加背景颜色，调整数值 (例如 0.5, 0.8, 1) 来改变透明度 */
-  backdrop-filter: blur(20px);          /*  应用毛玻璃模糊效果，调整数值 (例如 5px, 8px, 12px) 来改变模糊程度 */
-  -webkit-backdrop-filter: blur(10px); /*  兼容旧版 Safari */
-      /*  添加文字与边框的间距 (内边距 padding) */
+  background-color: rgba(55, 56, 62, 0.6);
 }
 
 .post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
   font-family: 'Noto Serif SC', serif;
 
+}
+
+.toc {
+background-color: rgba(55, 56, 62, 0.6);
+backdrop-filter: blur(20px);          /*  应用毛玻璃模糊效果，调整数值 (例如 5px, 8px, 12px) 来改变模糊程度 */
+opacity: 1;
+border-radius: var(--radius);
+padding: 20px;
 }
