@@ -256,7 +256,6 @@ body.dark .post-content {
 }
 
 .toc {
-background-color: rgba(55, 56, 62, 0.6);
 backdrop-filter: blur(20px);          /*  应用毛玻璃模糊效果，调整数值 (例如 5px, 8px, 12px) 来改变模糊程度 */
 opacity: 1;
 border-radius: var(--radius);
