@@ -35,12 +35,21 @@
   {{- end }}
 
   {{- if .Content }}
-  <div class="post-content">
+  <!-- **** MODIFICATION START: Added id="article-content" **** -->
+  <div class="post-content" id="article-content">
+  <!-- **** MODIFICATION END **** -->
     {{- if not (.Param "disableAnchoredHeadings") }}
     {{- partial "anchored_headings.html" .Content -}}
     {{- else }}{{ .Content }}{{ end }}
   </div>
   {{- end }}
+
+  <!-- **** MODIFICATION START: Added AI Summary Section **** -->
+  {{/* Optional: Only show summary for specific sections, e.g., 'posts' */}}
+  {{ if or (eq .Section "posts") (eq .Section "articles") }} {{/* Adjust section names as needed */}}
+    {{ partial "ai-summary.html" . }}
+  {{ end }}
+  <!-- **** MODIFICATION END **** -->
 
   <footer class="post-footer">
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
@@ -61,5 +70,20 @@
   {{- partial "comments.html" . }}
   {{- end }}
 </article>
+
+<!-- **** MODIFICATION START: Added JavaScript Loader **** -->
+{{/* Load Summarizer JS using Hugo Pipes */}}
+{{ $summarizerJS := resources.Get "js/summarizer.js" }}
+{{ if $summarizerJS }}
+  {{ if hugo.IsProduction }}
+    {{ $summarizerJS = $summarizerJS | js.Build | minify | fingerprint }}
+  {{ else }}
+    {{ $summarizerJS = $summarizerJS | js.Build }} {{/* No minify/fingerprint locally */}}
+  {{ end }}
+  <script src="{{ $summarizerJS.RelPermalink }}" defer></script>
+{{ else }}
+  {{ warnf "Summarizer JavaScript file not found at assets/js/summarizer.js" }}
+{{ end }}
+<!-- **** MODIFICATION END **** -->
 
 {{- end }}{{/* end main */}}
