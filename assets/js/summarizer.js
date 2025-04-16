@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. （可选但推荐）检查并截断文本长度
         // Worker AI 模型有输入长度限制（例如 BART 大约 1024 个 token，LLama 可能更多但也有上限）
         // 这里设置一个大概的字符数限制（需要根据模型调整），4000 字符约等于 800-1000 英文单词
-        const MAX_CHARS = 4000;
+        const MAX_CHARS = 50000;
         let textToSend = articleText;
         let wasTruncated = false;
 
