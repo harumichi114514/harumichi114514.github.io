@@ -44,9 +44,9 @@
   </div>
   {{- end }}
 
-  <!-- **** MODIFICATION START: Added AI Summary Section **** -->
-  {{/* Optional: Only show summary for specific sections, e.g., 'posts' */}}
-  {{ if or (eq .Section "posts") (eq .Section "articles") }} {{/* Adjust section names as needed */}}
+  <!-- **** MODIFICATION START: Updated condition **** -->
+  {{/* Only show summary for specific sections, e.g., 'posts', 'articles', 'philosophy' */}}
+  {{ if or (eq .Section "posts") (eq .Section "articles") (eq .Section "philosophy") }} {{/* Added philosophy */}}
     {{ partial "ai-summary.html" . }}
   {{ end }}
   <!-- **** MODIFICATION END **** -->
