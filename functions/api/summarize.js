@@ -2,8 +2,7 @@
 
 // Gemini API 的基础 URL 和模型名称 (使用 Generative Language API)
 // 你可以更换为其他模型，如 "gemini-1.5-flash-latest" 等
-const GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
-
+const GEMINI_API_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
 /**
  * 处理 POST 请求以进行文章总结 (使用 Google Gemini API)
  * @param {EventContext} context - Pages Function 的上下文对象
