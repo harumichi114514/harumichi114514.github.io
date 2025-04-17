@@ -45,60 +45,73 @@ export async function onRequestPost(context) {
       }
 
       try {
-        // 构建 DeepSeek API 请求体 (符合 OpenAI 兼容格式)
+        // --- 根据国家代码定制 DeepSeek Prompt ---
+        let userPromptForDeepseek = '';
+        let systemPromptForDeepseek = "You are an assistant skilled in summarizing articles concisely and accurately."; // 通用系统提示
+
+        if (country === 'CN') {
+          // 中国大陆：使用简体中文提示
+          console.log("Using Simplified Chinese prompt for DeepSeek.");
+          // 可以选择性地让系统提示也本地化，但通常用户提示更关键
+          // systemPromptForDeepseek = "你是一个擅长用简体中文精确并简洁总结文章的助手。";
+          userPromptForDeepseek = `请用简体中文总结以下文章：\n\n---\n${textToSummarize}\n---\n\n总结：`;
+        } else { // country === 'HK'
+          // 香港：使用繁体中文提示
+          console.log("Using Traditional Chinese prompt for DeepSeek.");
+          // systemPromptForDeepseek = "你是一個擅長用繁體中文精確並簡潔總結文章的助手。";
+          userPromptForDeepseek = `請用繁體中文總結以下文章：\n\n---\n${textToSummarize}\n---\n\n總結：`;
+        }
+        // --- 结束 Prompt 定制 ---
+
+        // 构建 DeepSeek API 请求体 (使用定制后的 Prompt)
         const deepseekPayload = {
           model: DEEPSEEK_MODEL_NAME,
           messages: [
-            // 可以保留 System Prompt 优化总结效果
-            { role: "system", content: "You are an expert assistant specialized in summarizing articles accurately and concisely." },
-            { role: "user", content: `Please summarize the following article:\n\n---\n${textToSummarize}\n---\n\nSummary:` }
+            { role: "system", content: systemPromptForDeepseek }, // 使用通用或定制的系统提示
+            { role: "user", content: userPromptForDeepseek }      // 使用特定语言的用户提示
           ],
-          // max_tokens: 1024, // 可根据需要调整
-          // temperature: 0.7,
+          // ... 其他 DeepSeek 参数 ...
         };
+
+        console.log("Sending payload to DeepSeek:", JSON.stringify(deepseekPayload)); // 记录发送的 payload
 
         const deepseekResponse = await fetch(DEEPSEEK_API_ENDPOINT, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${deepseekApiKey}`, // 使用 Bearer Token 认证
+            'Authorization': `Bearer ${deepseekApiKey}`,
           },
           body: JSON.stringify(deepseekPayload),
         });
 
-        if (!deepseekResponse.ok) {
-          const errorBody = await deepseekResponse.text(); // 获取文本以防 JSON 解析失败
-          console.error(`DeepSeek API Error (${deepseekResponse.status}): ${errorBody}`);
-          // 尝试解析 JSON 以获取更详细信息
-          let detailedError = "";
-          try {
-             const jsonError = JSON.parse(errorBody);
-             if (jsonError && jsonError.message) detailedError = ` - ${jsonError.message}`;
-          } catch(e) { /* 忽略解析错误 */ }
-          throw new Error(`DeepSeek API request failed: ${deepseekResponse.status} ${deepseekResponse.statusText}${detailedError}`);
-        }
-
-        const responseData = await deepseekResponse.json();
-        console.log("Received raw response from DeepSeek:", JSON.stringify(responseData, null, 2));
-
-        // 从 DeepSeek 响应中提取总结文本
-        if (responseData.choices && responseData.choices.length > 0 && responseData.choices[0].message && responseData.choices[0].message.content) {
-          summaryText = responseData.choices[0].message.content.trim();
-        } else {
-          console.error("Could not find summary text in DeepSeek response structure:", responseData);
-          throw new Error('DeepSeek API returned a response, but no summary text was found.');
-        }
-
-        if (!summaryText) {
-            throw new Error('DeepSeek generated an empty summary.');
-        }
+        // ... (处理 DeepSeek 响应的代码保持不变) ...
+         if (!deepseekResponse.ok) {
+           const errorBody = await deepseekResponse.text();
+           console.error(`DeepSeek API Error (${deepseekResponse.status}): ${errorBody}`);
+           let detailedError = "";
+           try {
+              const jsonError = JSON.parse(errorBody);
+              if (jsonError && jsonError.message) detailedError = ` - ${jsonError.message}`;
+           } catch(e) { /* 忽略解析错误 */ }
+           throw new Error(`DeepSeek API request failed: ${deepseekResponse.status} ${deepseekResponse.statusText}${detailedError}`);
+         }
+         const responseData = await deepseekResponse.json();
+         console.log("Received raw response from DeepSeek:", JSON.stringify(responseData, null, 2));
+         if (responseData.choices && responseData.choices.length > 0 && responseData.choices[0].message && responseData.choices[0].message.content) {
+           summaryText = responseData.choices[0].message.content.trim();
+         } else {
+           throw new Error('DeepSeek API returned a response, but no summary text was found.');
+         }
+         if (!summaryText) {
+             throw new Error('DeepSeek generated an empty summary.');
+         }
          console.log(`Successfully received summary from ${selectedService}.`);
 
       } catch (err) {
-        errorOccurred = err; // 捕获 DeepSeek 调用错误
+        errorOccurred = err;
         console.error(`Error calling ${selectedService} API:`, err);
       }
-
+      
     } else {
       // --- 调用 Google Gemini API ---
       selectedService = 'Google Gemini';
