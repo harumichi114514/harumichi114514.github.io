@@ -36,3 +36,5 @@ theme = "PaperMod"
     name = "🙆 关于"
     url = "/about/"
     weight = 40
+[markup.goldmark.renderer]
+    unsafe = true
