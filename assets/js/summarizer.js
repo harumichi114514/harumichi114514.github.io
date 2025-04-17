@@ -1,122 +1,210 @@
-// assets/js/summarizer.js
+// functions/api/summarize.js
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 获取需要操作的 HTML 元素
-    const summarizeButton = document.getElementById('summarize-btn');
-    // 确保这里的 'article-content' ID 与你 Hugo 模板中包含文章主体的元素的 ID 一致
-    const articleContentElement = document.getElementById('article-content');
-    const summaryOutputElement = document.getElementById('summary-output');
-    const summaryStatusElement = document.getElementById('summary-status');
+// --- 配置 Gemini ---
+const GEMINI_MODEL_NAME = "gemini-1.5-flash-latest"; // Using the latest Flash model
+const GEMINI_API_ENDPOINT_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
 
-    // --- 调试日志：检查脚本是否加载以及元素是否找到 ---
-    console.log("Summarizer script loaded.");
-    console.log("Button:", summarizeButton);
-    console.log("Article Content Element:", articleContentElement);
-    console.log("Summary Output Element:", summaryOutputElement);
-    console.log("Summary Status Element:", summaryStatusElement);
-    // --- 结束调试日志 ---
+// --- 配置 硅基流动 (DeepSeek) ---
+const DEEPSEEK_API_ENDPOINT = "https://api.siliconflow.cn/v1/chat/completions"; // From docs
+const DEEPSEEK_MODEL_NAME = "THUDM/GLM-4-9B-0414"; // As requested
 
-    // 确保所有需要的元素都存在于页面上，否则脚本无法工作
-    if (!summarizeButton || !articleContentElement || !summaryOutputElement || !summaryStatusElement) {
-        console.error("Summarizer Error: One or more required HTML elements (button, article content, status, output) not found. Check IDs in HTML and JS.");
-        // 如果按钮不存在，可能不需要显示状态和输出区域，但这里我们仅记录错误
-        return; // 停止执行后续代码
+/**
+ * 处理 POST 请求，根据用户地理位置路由到不同 AI 服务进行总结
+ * @param {EventContext} context - Pages Function 的上下文对象
+ */
+export async function onRequestPost(context) {
+  try {
+    // 1. 获取输入文本
+    const requestBody = await context.request.json();
+    const textToSummarize = requestBody.text;
+    if (!textToSummarize) {
+      return new Response(JSON.stringify({ error: 'Missing "text" in request body' }), {
+        status: 400, headers: { 'Content-Type': 'application/json' },
+      });
     }
 
-    // 为“生成摘要”按钮添加点击事件监听器
-    summarizeButton.addEventListener('click', async () => {
-        console.log("Summarize button clicked!"); // 调试日志
+    // 2. 获取 API 密钥 (确保已在 Cloudflare Secrets 中设置)
+    const geminiApiKey = context.env.GEMINI_API_KEY;
+    const deepseekApiKey = context.env.DEEPSEEK_API_KEY; // 使用你之前设置的 Secret 名称
 
-        // 1. 获取文章文本内容
-        const articleText = articleContentElement.innerText.trim(); // 使用 innerText 获取纯文本并去除首尾空格
-        console.log("Extracted text length:", articleText ? articleText.length : 0); // 调试日志
+    // 3. 获取用户国家代码
+    const country = context.request.cf?.country?.toUpperCase();
+    console.log(`Detected user country: ${country}`);
 
-        if (!articleText) {
-            summaryStatusElement.textContent = '错误：无法获取文章内容。';
-            summaryStatusElement.style.color = 'red';
-            return;
+    let summaryText = '';
+    let errorOccurred = null;
+    let selectedService = ''; // 用于日志记录
+
+    // 4. 根据国家代码选择 API
+    if (country === 'CN' || country === 'HK') {
+      // --- 调用 硅基流动 DeepSeek API ---
+      selectedService = 'DeepSeek';
+      console.log(`Routing to ${selectedService} API (Model: ${DEEPSEEK_MODEL_NAME})...`);
+      if (!deepseekApiKey) {
+        throw new Error("DeepSeek API key not configured in Cloudflare secrets.");
+      }
+
+      try {
+        // 构建 DeepSeek API 请求体 (符合 OpenAI 兼容格式)
+        const deepseekPayload = {
+          model: DEEPSEEK_MODEL_NAME,
+          messages: [
+            // 可以保留 System Prompt 优化总结效果
+            { role: "system", content: "You are an expert assistant specialized in summarizing articles accurately and concisely." },
+            { role: "user", content: `Please summarize the following article:\n\n---\n${textToSummarize}\n---\n\nSummary:` }
+          ],
+          // max_tokens: 1024, // 可根据需要调整
+          // temperature: 0.7,
+        };
+
+        const deepseekResponse = await fetch(DEEPSEEK_API_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${deepseekApiKey}`, // 使用 Bearer Token 认证
+          },
+          body: JSON.stringify(deepseekPayload),
+        });
+
+        if (!deepseekResponse.ok) {
+          const errorBody = await deepseekResponse.text(); // 获取文本以防 JSON 解析失败
+          console.error(`DeepSeek API Error (${deepseekResponse.status}): ${errorBody}`);
+          // 尝试解析 JSON 以获取更详细信息
+          let detailedError = "";
+          try {
+             const jsonError = JSON.parse(errorBody);
+             if (jsonError && jsonError.message) detailedError = ` - ${jsonError.message}`;
+          } catch(e) { /* 忽略解析错误 */ }
+          throw new Error(`DeepSeek API request failed: ${deepseekResponse.status} ${deepseekResponse.statusText}${detailedError}`);
         }
 
-        // 2. （可选但推荐）检查并截断文本长度
-        // Worker AI 模型有输入长度限制（例如 BART 大约 1024 个 token，LLama 可能更多但也有上限）
-        // 这里设置一个大概的字符数限制（需要根据模型调整），4000 字符约等于 800-1000 英文单词
-        const MAX_CHARS = 50000;
-        let textToSend = articleText;
-        let wasTruncated = false;
+        const responseData = await deepseekResponse.json();
+        console.log("Received raw response from DeepSeek:", JSON.stringify(responseData, null, 2));
 
-        if (articleText.length > MAX_CHARS) {
-            console.warn(`Article text too long (${articleText.length} chars), truncating to ${MAX_CHARS} chars for summarization.`);
-            textToSend = articleText.substring(0, MAX_CHARS);
-            wasTruncated = true;
+        // 从 DeepSeek 响应中提取总结文本
+        if (responseData.choices && responseData.choices.length > 0 && responseData.choices[0].message && responseData.choices[0].message.content) {
+          summaryText = responseData.choices[0].message.content.trim();
+        } else {
+          console.error("Could not find summary text in DeepSeek response structure:", responseData);
+          throw new Error('DeepSeek API returned a response, but no summary text was found.');
         }
 
-        // 3. 更新 UI，显示加载状态
-        summaryStatusElement.textContent = wasTruncated
-            ? `注意：原文过长，正在总结前 ${MAX_CHARS} 个字符...`
-            : '正在生成摘要，请稍候...';
-        summaryStatusElement.style.color = '#555'; // 重置颜色
-        summaryOutputElement.textContent = ''; // 清空之前的摘要
-        summarizeButton.disabled = true; // 禁用按钮，防止重复点击
-        summarizeButton.style.cursor = 'wait'; // 更改鼠标样式
+        if (!summaryText) {
+            throw new Error('DeepSeek generated an empty summary.');
+        }
+         console.log(`Successfully received summary from ${selectedService}.`);
 
-        console.log("Sending text (first 50 chars):", textToSend.substring(0, 50) + "..."); // 调试日志
-        console.log("Before fetch to /api/summarize"); // 调试日志
+      } catch (err) {
+        errorOccurred = err; // 捕获 DeepSeek 调用错误
+        console.error(`Error calling ${selectedService} API:`, err);
+      }
 
-        // 4. 使用 try...catch...finally 来处理请求和错误
-        try {
-            // 发送 POST 请求到 Cloudflare Pages Function
-            const response = await fetch('/api/summarize', { // 使用相对路径指向 Function
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ text: textToSend }), // 将文本放在请求体中
-            });
+    } else {
+      // --- 调用 Google Gemini API ---
+      selectedService = 'Google Gemini';
+      console.log(`Routing to ${selectedService} API (Model: ${GEMINI_MODEL_NAME})...`);
+      if (!geminiApiKey) {
+        throw new Error("Gemini API key not configured in Cloudflare secrets.");
+      }
 
-            console.log("Fetch response received:", response.status, response.statusText); // 调试日志
+      try {
+        // 构建 Gemini API 请求体
+        const geminiPayload = {
+          contents: [{ parts: [{ text: `Please summarize the following article concisely and accurately:\n\n---\n${textToSummarize}\n---\n\nSummary:` }] }],
+          // generationConfig: { maxOutputTokens: 1024 } // 可选
+        };
+        const geminiApiUrl = `${GEMINI_API_ENDPOINT_BASE}/${GEMINI_MODEL_NAME}:generateContent?key=${geminiApiKey}`;
 
-            // 检查后端是否成功处理（状态码 2xx）
-            if (!response.ok) {
-                let errorMsg = `错误：请求失败，状态码 ${response.status}`;
-                try {
-                    // 尝试从后端获取更详细的错误信息
-                    const errorData = await response.json();
-                    if (errorData && errorData.error) {
-                        errorMsg = `错误：${errorData.error}`; // 使用后端返回的错误信息
-                    }
-                } catch (e) {
-                    // 如果解析后端错误信息失败，使用通用错误
-                    console.error("Could not parse error response JSON:", e);
-                }
-                throw new Error(errorMsg); // 抛出错误，会被下面的 catch 捕获
+        const geminiResponse = await fetch(geminiApiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(geminiPayload),
+        });
+
+        if (!geminiResponse.ok) {
+          let errorBody = null;
+          let errorMessage = `Gemini API request failed: ${geminiResponse.status} ${geminiResponse.statusText}`;
+          try {
+            errorBody = await geminiResponse.json();
+            console.error("Gemini API Error Response:", JSON.stringify(errorBody, null, 2));
+            if (errorBody && errorBody.error && errorBody.error.message) {
+              if (errorBody.error.message.includes("User location is not supported")) {
+                 errorMessage = "Gemini API Error: User location not supported for API use.";
+              } else {
+                 errorMessage += ` - ${errorBody.error.message}`;
+              }
+            } else if (errorBody) {
+               errorMessage += ` - See Function logs for details.`;
             }
-
-            // 解析后端返回的 JSON 数据
-            const data = await response.json();
-            console.log("Data received from backend:", data); // 调试日志
-
-            // 检查返回的数据中是否有 summary 字段
-            if (data && data.summary) {
-                // 5. 显示总结结果
-                summaryOutputElement.textContent = data.summary;
-                summaryStatusElement.textContent = '摘要生成成功！';
-                summaryStatusElement.style.color = 'green';
-            } else {
-                // 如果后端成功响应但没有 summary，也视为错误
-                throw new Error('错误：服务器响应成功，但未返回有效的摘要内容。');
-            }
-
-        } catch (error) {
-            // 6. 处理请求过程中的任何错误（网络错误、后端错误、解析错误等）
-            console.error('Summarization failed:', error); // 在控制台记录详细错误
-            summaryStatusElement.textContent = error.message; // 向用户显示错误信息
-            summaryStatusElement.style.color = 'red';
-            summaryOutputElement.textContent = ''; // 清空输出区域
-        } finally {
-            // 7. 无论成功还是失败，最后都要恢复按钮状态
-            summarizeButton.disabled = false;
-            summarizeButton.style.cursor = 'pointer';
-            console.log("Summarize function finished."); // 调试日志
+          } catch (e) { console.error("Could not parse Gemini error response JSON:", e); }
+          throw new Error(errorMessage);
         }
+
+        const responseData = await geminiResponse.json();
+        console.log("Received raw response from Gemini:", JSON.stringify(responseData, null, 2));
+
+        // 从 Gemini 响应中提取总结文本
+        if (responseData.candidates && responseData.candidates.length > 0 &&
+            responseData.candidates[0].content && responseData.candidates[0].content.parts &&
+            responseData.candidates[0].content.parts.length > 0 && responseData.candidates[0].content.parts[0].text) {
+          summaryText = responseData.candidates[0].content.parts[0].text.trim();
+          if (responseData.candidates[0].finishReason === "SAFETY") { console.warn("Gemini response potentially blocked due to safety settings."); }
+          else if (responseData.candidates[0].finishReason === "MAX_TOKENS") { console.warn("Gemini summary may be truncated due to max output tokens limit."); }
+        } else if (responseData.promptFeedback && responseData.promptFeedback.blockReason) {
+          throw new Error(`Content could not be processed by Gemini due to: ${responseData.promptFeedback.blockReason}`);
+        } else {
+          throw new Error('Gemini API returned a response, but no summary text was found.');
+        }
+
+        if (!summaryText) {
+            throw new Error('Gemini generated an empty summary.');
+        }
+        console.log(`Successfully received summary from ${selectedService}.`);
+
+      } catch (err) {
+        errorOccurred = err; // 捕获 Gemini 调用错误
+        console.error(`Error calling ${selectedService} API:`, err);
+      }
+    }
+
+    // 5. 处理最终结果或错误
+    if (errorOccurred) {
+      // 如果在调用相应的 API 时出错，重新抛出以触发外部 catch
+      throw errorOccurred;
+    }
+
+    // 6. 返回成功响应
+    return new Response(JSON.stringify({ summary: summaryText }), {
+      headers: { 'Content-Type': 'application/json' },
     });
-});
+
+  } catch (error) {
+    // 最外层错误处理
+    console.error('Overall error in summarization function:', error);
+    const clientErrorMessage = error.message.includes("API key not configured")
+        ? "API configuration error."
+        : error.message.includes("Content could not be processed by Gemini")
+        ? error.message // Gemini 特定内容错误
+        : error.message.includes("User location not supported for API use")
+        ? "Summary service unavailable in this region via Gemini." // Gemini 地理位置错误
+        : error.message.startsWith("DeepSeek API request failed") || error.message.startsWith("Gemini API request failed")
+        ? "AI service request failed. Please try again later." // API 调用失败通用
+        : error.message.includes("empty summary") // AI 返回空
+        ? `The AI model (${error.message.includes('DeepSeek') ? 'DeepSeek' : 'Gemini'}) returned an empty summary.`
+        : "Failed to summarize text."; // 其他通用
+
+    return new Response(JSON.stringify({ error: clientErrorMessage }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}
+
+// 保留 onRequest 函数以处理非 POST 请求
+export async function onRequest(context) {
+   if (context.request.method !== 'POST') {
+      return new Response(`Please use the POST method. Method used: ${context.request.method}`, {
+          status: 405, headers: { 'Allow': 'POST' }
+      });
+   }
+}
