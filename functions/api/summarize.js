@@ -1,7 +1,7 @@
 // functions/api/summarize.js
 
 // --- 配置 nCN (非中国区域) 服务提供商 (当前为 Google Gemini) ---
-const NCN_PROVIDER_MODEL_NAME = "gemini-1.5-flash-latest";
+const NCN_PROVIDER_MODEL_NAME = "gemini-2.0-flash-lite";
 const NCN_PROVIDER_API_ENDPOINT_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
 
 // --- 配置 CN (中国区域) 服务提供商 (当前为 智谱AI BigModel) ---
