@@ -1,3 +1,129 @@
-{{- /* Comments area start */ -}}
-{{- /* to add comments read => https://gohugo.io/content-management/comments/ */ -}}
-{{- /* Comments area end */ -}}
+{{- /* layouts/partials/comments.html */ -}}
+{{- /* 检查文章的 front matter 中是否设置了 comments: true */ -}}
+{{- if .Params.comments -}}
+
+<section id="comments-section" class="post-content">
+    <hr>
+    <h2>评论</h2>
+
+    <div id="comments-list">
+        <p>正在加载评论...</p >
+    </div>
+
+    <h3>发表评论</h3>
+    <form id="comment-form">
+        <div class="form-group">
+            <label for="author">昵称</label>
+            <input type="text" id="author" name="author" required placeholder="你的名字">
+        </div>
+        <div class="form-group">
+            <label for="body">内容</label>
+            <textarea id="body" name="body" rows="6" required placeholder="留下你的看法..."></textarea>
+        </div>
+
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAB63E62aY_GmsJ8B" data-theme="auto"></div>
+
+        <button type="submit" class="button">提交评论</button>
+        <p id="form-status"></p >
+    </form>
+</section>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const commentsList = document.getElementById('comments-list');
+        const commentForm = document.getElementById('comment-form');
+        const formStatus = document.getElementById('form-status');
+
+        // 使用文章的相对链接作为唯一标识符，这比 slug 更可靠
+        const postIdentifier = '{{ .RelPermalink }}';
+
+        // 1. 获取并显示评论
+        async function fetchComments() {
+            try {
+                // Worker API 的 endpoint 是 /api/comments
+                const response = await fetch(`/api/comments?slug=${encodeURIComponent(postIdentifier)}`);
+                if (!response.ok) throw new Error('无法加载评论。');
+
+                const comments = await response.json();
+
+                if (comments.length === 0) {
+                    commentsList.innerHTML = '<p>暂无评论，快来抢沙发吧！</p >';
+                    return;
+                }
+
+                commentsList.innerHTML = comments.map(comment => `
+                    <div class="comment-box">
+                        <div class="comment-header">
+                            <strong class="comment-author">${escapeHTML(comment.author)}</strong>
+                            <span class="comment-date">${new Date(comment.created_at).toLocaleString()}</span>
+                        </div>
+                        <div class="comment-body">
+                            <p>${escapeHTML(comment.body).replace(/\n/g, '<br>')}</p >
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                commentsList.innerHTML = `<p class="error-message">${error.message}</p >`;
+            }
+        }
+
+        // 2. 处理表单提交
+        commentForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            formStatus.textContent = '正在提交...';
+            formStatus.className = 'status-message';
+
+            const formData = new FormData(commentForm);
+            const turnstileToken = formData.get('cf-turnstile-response');
+
+            if (!turnstileToken) {
+                formStatus.textContent = '请完成人机验证。';
+                formStatus.className = 'error-message';
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/comments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        author: formData.get('author'),
+                        body: formData.get('body'),
+                        slug: postIdentifier,
+                        'cf-turnstile-response': turnstileToken
+                    }),
+                });
+
+                if (response.status === 201) {
+                    formStatus.textContent = '评论成功！';
+                    formStatus.className = 'success-message';
+                    commentForm.reset();
+                    // 重新加载 Turnstile widget
+                    window.turnstile.reset();
+                    // 刷新评论列表
+                    await fetchComments();
+                    setTimeout(() => formStatus.textContent = '', 3000);
+                } else {
+                    const errorText = await response.text();
+                    throw new Error(errorText || '提交失败，请稍后重试。');
+                }
+            } catch (error) {
+                formStatus.textContent = `错误: ${error.message}`;
+                formStatus.className = 'error-message';
+            }
+        });
+
+        // 简单的 HTML 转义函数防止 XSS
+        function escapeHTML(str) {
+            const p = document.createElement('p');
+            p.textContent = str;
+            return p.innerHTML;
+        }
+
+        // 页面加载时获取评论
+        fetchComments();
+    });
+</script>
+{{- end -}}

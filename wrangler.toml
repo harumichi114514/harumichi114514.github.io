@@ -1,0 +1,9 @@
+# wrangler.toml
+name = "hugo-comments-worker" 
+main = "functions/api/comments.js" 
+compatibility_date = "2023-10-30"
+
+[[d1_databases]]
+binding = "hugo_comments" 
+database_name = "hugo-comments"
+database_id = "6b6ce45d-6152-41f6-b03f-e8252387b09b"
